@@ -1,0 +1,84 @@
+# CS50 Lab 3
+## Arun Anand, CS50 Summer 2017
+## README compiled using class materials for bag.c
+
+###
+
+A *hashtable* is an unordered collection of (items) with associated keys.
+The hashtable starts empty, and grows as the caller adds one item at a time.
+Items can be found using their associated keys.
+It could be empty, or could contain hundreds of items.
+Hashtables can be created with a set number of hash slots.
+
+
+### Usage
+
+The *hashtable* module, defined in `hashtable.h` and implemented in `hashtable.c`, implements a hashtable of `void*`, and exports the following functions through `hashtable.h`:
+
+```c
+/* Create a new (empty) hashtable; return NULL if error. */
+hashtable_t *hashtable_new(const int num_slots);
+
+/* Insert item, identified by key (string), into the given hashtable.
+ * The key string is copied for use by the hashtable.
+ * Return false if key exists in ht, any parameter is NULL, or error;
+ * return true iff new item was inserted.
+ */
+bool hashtable_insert(hashtable_t *ht, const char *key, void *item);
+
+/* Return the item associated with the given key;
+ * return NULL if hashtable is NULL, key is NULL, key is not found.
+ */
+void *hashtable_find(hashtable_t *ht, const char *key);
+
+/* Print the whole table; provide the output file and func to print each item.
+ * Ignore if NULL fp. Print (null) if NULL ht.
+ * Print a table with no items if NULL itemprint.
+ */
+void hashtable_print(hashtable_t *ht, FILE *fp,
+                     void (*itemprint)(FILE *fp, const char *key, void *item));
+
+/* Iterate over all items in the table; in undefined order.
+ * Call the given function on each item, with (arg, key, item).
+ * If ht==NULL or itemfunc==NULL, do nothing.
+ */
+void hashtable_iterate(hashtable_t *ht, void *arg,
+               void (*itemfunc)(void *arg, const char *key, void *item) );
+
+/* Delete the whole hashtable; ignore NULL ht.
+ * Provide a function that will delete each item (may be NULL).
+ */
+void hashtable_delete(hashtable_t *ht, void (*itemdelete)(void *item) );
+```
+
+### Implementation
+
+We implement this hashtable as an array of `struct set.`
+The *hashtable* itself is represented as a `struct hashtable` containing a pointer to the array; the array pointer is NULL when the hashtable is empty.
+
+Each slot in the array is a `struct set.`
+
+To insert a new item in the hashtable we create a new hashtablenode to hold the `item`, and insert it at the head of the list.
+
+To find an item from the hashtable we traverse the array and call the set_find method.
+
+The `hashtable_print` method prints a little syntax between the sets, but mainly calls the set_print method.
+
+The `hashtable_iterate` method traverses the array and calls the set_iterate function.
+
+The `hashtable_delete` method calls the set_delete function on each set and concludes by freeing the hashtable.
+
+### Assumptions
+
+No assumptions beyond those that are clear from the spec.
+
+The `item` inserted cannot be NULL, and thus a NULL return from `hashtable_find` must indicate either error or empty set, not simply a NULL `item` coming out of the set.
+
+We also assume that all the items in the hashtable are of the same type in order for itemprint and itemfunc to work
+
+### Compilation
+
+To compile, simply `make all`.
+
+To test, `./hashtable_test`.
+See [TESTING] for details of testing and an example test run.

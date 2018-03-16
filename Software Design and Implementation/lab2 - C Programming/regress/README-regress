@@ -1,0 +1,53 @@
+README for regress.sh
+Arun Anand, Summer 2017
+
+Usage:
+/*
+ * regress.sh - perform regression testing for a shell script program
+ *
+ * usage: regress.sh dirname tesfile
+ * where:
+ *   dirname is the name of the directory where the testfiles are stored
+ *
+ * output: prints where the test results are Saved
+ *creates a directory to save all the newly run testresults
+ *prints out the differences between dirname and the newly created directory
+ *
+ *
+ *
+ * stdin: none
+ * stdout: printout of where the test results are saved, and a listing of differences
+ * stderr: error messages
+ *
+ * Arun Anand, July 2017
+ */
+
+Example command lines:
+  regress.sh dirname testfile0 testile1 testfile2
+
+Exit status:
+  0 - success
+  1 - too few arguments
+  2 - dirname exists, but it is not a directory
+  3 - one of the files is not regular or readable
+  4 - differences exist between the newly created directory and dirname
+  5 - invalid directory name
+
+Assumptions:
+
+-No assumptions are made on the input, so the program will not crash.
+-However, (i) if there are too few arguments, (ii) if dirname exists but it
+isnt a directory, (iii) if one of the files is not regular or readable, then
+the program will terminate execution and print and error message
+
+"Non"-Assumptions:
+
+- dirname need not exist: if it doesnt exist the newly created directory will be
+renamed as "dirname"
+
+
+Limitations:
+
+-The script will only output the differences between the testcases that are
+common to both base and the newly created directory. Thus no new testcases can
+be added.

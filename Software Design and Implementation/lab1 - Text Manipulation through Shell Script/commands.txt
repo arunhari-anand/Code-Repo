@@ -1,0 +1,51 @@
+Last login: Fri Jun 30 17:58:05 on ttys001
+aruns-mbp:~ arunharianand$ ssh arunhari@flume.cs.dartmouth.edu
+arunhari@flume.cs.dartmouth.edu's password: 
+Last login: Fri Jun 30 17:50:36 2017 from 10.31.189.41
+
+[flume:~] 28) cd cs50/labs/lab1
+
+[flume:lab1] 29) sed -e '1,33d' -e '3373, 3738d' ~cs50/public_html/Labs/Lab1/alice-gutenberg.txt > alice.txt
+
+[flume:lab1] 30) grep "CHAPTER" alice.txt
+CHAPTER I. Down the Rabbit-Hole
+CHAPTER II. The Pool of Tears
+CHAPTER III. A Caucus-Race and a Long Tale
+CHAPTER IV. The Rabbit Sends in a Little Bill
+CHAPTER V. Advice from a Caterpillar
+CHAPTER VI. Pig and Pepper
+CHAPTER VII. A Mad Tea-Party
+CHAPTER VIII. The Queen’s Croquet-Ground
+CHAPTER IX. The Mock Turtle’s Story
+CHAPTER X. The Lobster Quadrille
+CHAPTER XI. Who Stole the Tarts?
+CHAPTER XII. Alice’s Evidence
+
+[flume:lab1] 31) tr -c [:alpha:] '\n' < alice.txt| tr '\-' '\n'| tr -s \\n > alicewords.txt
+
+[flume:lab1] 32) grep -ci Alice alicewords.txt
+398
+
+[flume:lab1] 33) grep -ci Wonder alicewords.txt
+31
+
+[flume:lab1] 34) tr A-Z a-z < alicewords.txt| sort| uniq -ci| sort -nr| sed -n '1,10p'
+   1644 the
+    872 and
+    729 to
+    632 a
+    595 it
+    553 she
+    545 i
+    514 of
+    462 said
+    411 you
+
+[flume:lab1] 35) comm -23 <(sort alicewords.txt) <(sort stopwords.txt)| uniq -i|wc -l
+sort: cannot read: stopwords.txt: No such file or directory
+2572
+
+[flume:lab1] 36) comm -23 <(sort alicewords.txt) ~cs50/public_html/Labs/Lab1/stopwords.txt| uniq -i|wc -l
+2568
+
+[flume:lab1] 37) 

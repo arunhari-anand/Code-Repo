@@ -1,0 +1,33 @@
+# CS50 Lab 3
+## Arun Anand, CS50 Summer 2017
+
+### Testing 'hashtable'
+
+In order to test the *hashtable* module, we built a hashtable_test program that tests all of the functionality
+of the hashtable module.
+
+It also tests for the error cases, where some of the arguments passed may be NULL (or negative numbers
+where positive numbers are expected).
+
+The program first creates a hashtable with 3 slots then inserts 4 ints into it with string keys
+(thereby guaranteeing a collision). Then hashtable_find, hashtable_print,
+hashtable_iterate and hashtable_delete are tested.
+
+`hashtable_find()` was called with both items that are known to be in the hashtable and items that are known to
+not be in the hashtable.
+
+hashtable_iterate is called to add an int (5) to every item in the hashtable.
+
+hashtable_print is used to confirm the success of all of the above operations.
+
+### Test run
+
+An example test run is in `hashtable_test.out`, built with
+
+	make all; ./hashtable_test > hashtable_test.out
+
+In that file one can see the progress of building a hashtable, the results of `hashtable_print`,
+and the results of different `hashtable_iterate` and `hashtable_delete` tests.
+
+### Limitations
+No limitations

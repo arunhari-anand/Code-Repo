@@ -1,0 +1,32 @@
+# CS50 Lab 3
+## Arun Anand, CS50 Summer 2017
+
+### Testing 'set'
+
+In order to test the *set* module, we built a set_test program that tests all of the functionality
+of the set module.
+
+It also tests for the error cases, where some of the arguments passed may be NULL (or negative numbers
+where positive numbers are expected).
+
+The program first creates a set and then inserts ints into it with string keys. Then set_find,
+set_print, set_iterate and set_delete are tested.
+
+`set_find()` was called with both items that are known to be in the set and items that are known to
+not be in the set.
+
+set_iterate is called to add an int (5) to every item in the set.
+
+set_print is used to confirm the success of all of the above operations.
+
+### Test run
+
+An example test run is in `set_test.out`, built with
+
+	make all; ./set_test > set_test.out
+
+In that file one can see the progress of building a set, the results of `set_print`,
+and the results of different `set_iterate` and `set_delete` tests.
+
+### Limitations
+No limitations

@@ -1,0 +1,40 @@
+# CS50 Lab 3
+## Arun Anand, CS50 Summer 2017
+
+### Testing 'counters'
+
+In order to test the *set* module, we built a counters_test program that tests all of the functionality
+of the counters module.
+
+It also tests for the error cases, where some of the arguments passed may be NULL (or negative numbers
+where positive numbers are expected).
+
+The program first creates a new counters, then new counters are inserted in, with repetition of keys.
+
+Negative keys are also tried, and also a null counters object is also passed (these have
+no effect on the later print statements).
+
+Then counters_set is tried with existing and new keys.
+
+Then counters_get is tried with a key that is known to be in the set and a key that is known
+to not be in the counters set.
+
+Then counters_print is used to confirm the success of all the above operations.
+Counters_iterate is used to return the sum of all the counts, and counters_delete is called.
+
+NULL arguments are also passed to all the above functions to set that the module
+handles this properly.
+
+
+
+### Test run
+
+An example test run is in `counters_test.out`, built with
+
+	make all; ./counters_test > counters_test.out
+
+In that file one can see the progress of building a counters, the results of `counters_print`,
+and the results of different `set_iterate` and `set_delete` tests.
+
+### Limitations
+No limitations.

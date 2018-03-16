@@ -1,0 +1,53 @@
+README for histo.c
+Arun Anand, Summer 2017
+
+Compiling: mygcc -o histo histo.c
+
+Usage:
+/*
+ * histo.c - outputs a histogram of the nonnegative numbers from stdin
+ *
+ *
+ * usage: three different ways to call:
+ * histo
+ *
+ * output: upon EOF, the program will generate and output a histogram
+ * of all the numbers from stdin, using the minimum possible bin size
+ * that is a power of 2.
+ *
+ *
+ *
+ * stdin: A set of numbers
+ * stdout: A generated histogram with 16 bins, with bin size specified
+ * stderr: error messages
+ *
+ * Arun Anand, July 2017
+ */
+
+Example command lines:
+  ./histo
+
+Exit status:
+  0 - success
+
+
+Assumptions:
+
+- The numbers entered must fall within the range of ints, otherwise
+they will be ignored
+- Any negative number will be ignored
+- All individual numbers must be separated by white space
+- Any non-numerical, non-space entry will cause the program to terminate
+and print out the histogram for the numbers entered thus far
+
+"Non"-Assumptions:
+
+- Numbers may be separated by space, new line, tab, etc.
+- The bins will be dynamically resized so the user is not required
+to provide an indication of bin size.
+
+
+Limitations:
+
+- Does not accomodate negative Numbers.
+- Does not accomodate numbers outside the range of ints.

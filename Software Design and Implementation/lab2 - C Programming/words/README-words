@@ -1,0 +1,61 @@
+README for words.c
+Arun Anand, Summer 2017
+
+Compiling: mygcc -o words words.c
+
+Usage:
+/*
+ * words.c - output the words in the file provided in the argument or
+ * from stdin. One word is outputted per line
+ *
+ *
+ * usage: three different ways to call:
+ * (i) words filename0 filename1... (ii) words filename0 filename1 - filename2...
+  (iii) words
+ * where:
+ *   filename? is a textfile and '-' is a special character that diverts input to
+ * stdin at that point in the sequence
+ *
+ * output: in case (i) it prints out the list of all words in filename0 followed
+ by the list of all words in filename1 and so on (ii) it prints out a list of all words
+ * in all the files sequentially, but when the hyphen is encountered input is redirected
+ * from stdin (iii) prints out a listing of all words in stdin.
+ * Note: a word will be considered to be a sequence of letters.
+ *
+ *
+ *
+ * stdin: a string, in the case of a hyphen or case (iii)
+ * stdout: a listing of all the words in the input, one line per word
+ * stderr: error messages
+ *
+ * Arun Anand, July 2017
+ */
+
+Example command lines:
+  ./words filename1 - filename2
+  ./chill
+  ./chill filename
+
+Exit status:
+  0 - success
+  1 - file does not exist/ cannot be opened
+  2 - error in file
+
+
+Assumptions:
+
+-No assumptions are made on the input, so the program will not crash.
+-However, (i) if the file does not exist or it cannot be opened, (ii) if there
+are errors in the files arguments then the program will terminate execution and
+print an error message.
+
+"Non"-Assumptions:
+
+- the hyphen can occur at any point in the sequence
+- files need not be in the current working directory
+
+
+Limitations:
+
+-Words will be considered to be a sequence of letters, so
+words like "can't" will be split into "can" and "t"

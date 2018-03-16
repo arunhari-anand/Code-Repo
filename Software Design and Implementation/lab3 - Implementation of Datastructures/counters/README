@@ -1,0 +1,85 @@
+# CS50 Lab 3
+## Arun Anand, CS50 Summer 2017
+## README compiled using class materials for counters.c
+
+### counters
+
+A *counters* is an unordered collection of counters with associated keys.
+The counters starts empty, and grows as the caller adds one counter at a time.
+Counter values can be found using their associated keys.
+It could be empty, or could contain hundreds of counters.
+
+
+### Usage
+
+The *counters* module, defined in `counters.h` and implemented in `counters.c`, implements a set of `contersnode`, and exports the following functions through `counters.h`:
+
+```c
+/* Create a new (empty) counter structure; return NULL if error. */
+counters_t *counters_new(void);
+
+/* Increment the counter indicated by key; key must be >= 0.
+ * If the key does not yet exist, create a counter for it and initialize to 1.
+ * Ignore if ctrs is NULL or key is negative.
+ * Return the new value of the counter related to the inserted key
+ */
+int counters_add(counters_t *ctrs, const int key);
+
+/* Return current value of counter associated with the given key;
+ * return 0 if ctrs is NULL or if key is not found.
+ */
+int counters_get(counters_t *ctrs, const int key);
+
+/* Set the current value of counter associated with the given key;
+ * If the key does not yet exist, create a counter for it and initialize to
+ * the given value. Ignore if ctrs is NULL, if key < 0, or count < 0.
+ */
+void counters_set(counters_t *ctrs, const int key, int count);
+
+/* Print all counters; provide the output file.
+ * Ignore if NULL fp. Print (null) if NULL ctrs.
+ */
+void counters_print(counters_t *ctrs, FILE *fp);
+
+/* Iterate over all counters in the set (in undefined order):
+ * call itemfunc for each item, with (arg, key, count).
+ * If ctrs==NULL or itemfunc==NULL, do nothing.
+ */
+void counters_iterate(counters_t *ctrs, void *arg,
+                      void (*itemfunc)(void *arg, const int key, int count));
+
+/* Delete the whole counters. ignore NULL ctrs. */
+void counters_delete(counters_t *ctrs);
+```
+
+### Implementation
+
+We implement this counters as a linked list.
+The *counters* itself is represented as a `struct counters` containing a pointer to the head of the list; the head pointer is NULL when the set is empty.
+
+Each node in the list is a `struct countersnode`, a type defined internally to the module.
+Each countersnode includes an int count, an int key and a pointer to the next countersnode on the list.
+
+To insert a new item in the counters we create a new countersnode and insert it at the head of the list.
+
+To find a count from the set we traverse the list and compare the keys of all the items. We return the count that matches the given key.
+If the list is empty or the key is not found, we return 0 instead.
+
+The `counters_print` method prints the keys and counts by scanning the linked list.
+
+The `counters_iterate` method calls the `itemfunc` function on each countersnode by scanning the linked list.
+
+The `counters_delete` method freeing countersnodes as it proceeds.
+It concludes by freeing the `struct set`.
+
+### Assumptions
+
+No assumptions beyond those that are clear from the spec.
+
+
+### Compilation
+
+To compile, simply `make all`.
+
+To test, `./counters_test`.
+See [TESTING] for details of testing and an example test run.

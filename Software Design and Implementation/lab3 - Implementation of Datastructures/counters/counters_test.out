@@ -1,0 +1,11 @@
+
+testing counters_add:
+The count associated with key 0 is 2 
+The count associated with key 1 is 1 
+Attempting to get an invalid key: 
+Key not found!
+{key: 1, count: 1; key: 0, count: 2; }
+{key: 2, count: 15; key: 1, count: 10; key: 0, count: 20; }
+(null)
+The sum of all the counts is 45
+Deleting ctrs

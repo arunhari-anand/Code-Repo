@@ -1,0 +1,86 @@
+# CS50 Lab 3
+## Arun Anand, CS50 Summer 2017
+## README compiled using class materials for counters.c
+
+### set
+
+A *set* is an unordered collection of (items) with associated keys.
+The set starts empty, and grows as the caller adds one item at a time.
+Items can be found using their associated keys.
+It could be empty, or could contain hundreds of items.
+
+
+### Usage
+
+The *set* module, defined in `set.h` and implemented in `set.c`, implements a set of `void*`, and exports the following functions through `set.h`:
+
+```c
+/* Create a new (empty) set; return NULL if error. */
+set_t *set_new(void);
+
+/* Insert item, identified by a key (string), into the given set.
+ * The key string is copied for use by the set.
+ * Return false if key exists, any parameter is NULL, or error;
+ * return true iff new item was inserted.
+ */
+bool set_insert(set_t *set, const char *key, void *item);
+
+/* Return the item associated with the given key;
+ * return NULL if set is NULL, key is NULL, or key is not found.
+ */
+void *set_find(set_t *set, const char *key);
+
+/* Print the whole set; provide the output file and func to print each item.
+ * Ignore if NULL fp. Print (null) if NULL set.
+ * Print a set with no items if NULL itemprint.
+*/
+void set_print(set_t *set, FILE *fp,
+               void (*itemprint)(FILE *fp, const char *key, void *item) );
+
+/* Iterate over all items in the set, in undefined order.
+ * Call the given function on each item, with (arg, key, item).
+ * If set==NULL or itemfunc==NULL, do nothing.
+ */
+void set_iterate(set_t *set, void *arg,
+                 void (*itemfunc)(void *arg, const char *key, void *item) );
+
+/* Delete the whole set; ignore NULL set.
+ * Provide a function that will delete each item (may be NULL).
+ */
+void set_delete(set_t *set, void (*itemdelete)(void *item) );
+```
+
+### Implementation
+
+We implement this set as a linked list.
+The *set* itself is represented as a `struct set` containing a pointer to the head of the list; the head pointer is NULL when the set is empty.
+
+Each node in the list is a `struct setnode`, a type defined internally to the module.
+Each setnode includes a pointer to the `void *item`, a pointer to the `char *key` and a pointer to the next setnode on the list.
+
+To insert a new item in the counters we create a new setnode to hold the `item`, and insert it at the head of the list.
+
+To find an item from the set we traverse the list and compare the keys of all the items. We return the item that matches the given key.
+If the list is empty or the key is not found, we return NULL instead.
+
+The `set_print` method prints a little syntax around the list, and between items, but mostly calls the `itemprint` function on each item by scanning the linked list.
+
+The `set_iterate` method calls the `itemfunc` function on each item by scanning the linked list.
+
+The `set_delete` method calls the `itemdelete` function on each item by scanning the linked list, freeing countersnodes as it proceeds.
+It concludes by freeing the `struct set`.
+
+### Assumptions
+
+No assumptions beyond those that are clear from the spec.
+
+The `item` inserted cannot be NULL, and thus a NULL return from `set_find` must indicate either error or empty counters, not simply a NULL `item` coming out of the counters.
+
+We also assume that all the items in the set are of the same type in order for itemprint and itemfunc to work
+
+### Compilation
+
+To compile, simply `make all`.
+
+To test, `./set_test`.
+See [TESTING] for details of testing and an example test run.

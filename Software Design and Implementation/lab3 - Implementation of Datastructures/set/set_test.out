@@ -1,0 +1,15 @@
+
+testing set_insert:
+Searching for a key that has not been inserted into the set: 
+Key not found!
+Searching for a valid key:
+Key found, item = 10
+printing the set
+{Key: Key4, Int: 40;Key: Key3, Int: 30;Key: Key2, Int: 20;Key: Key1, Int: 10;}
+{}
+
+adding 5 to the set
+{Key: Key4, Int: 45;Key: Key3, Int: 35;Key: Key2, Int: 25;Key: Key1, Int: 15;}
+deleting the set
+Testing a set with structs in it as items:
+{Key: Key3, Int: 3;Key: Key2, Int: 2;Key: Key1, Int: 1;}

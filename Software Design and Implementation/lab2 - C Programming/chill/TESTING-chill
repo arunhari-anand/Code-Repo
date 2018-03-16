@@ -1,0 +1,93 @@
+Last login: Sun Jul  9 19:01:00 on ttys000
+aruns-mbp:~ arunharianand$ ssh arunhari@flume.cs.dartmouth.edu
+arunhari@flume.cs.dartmouth.edu's password: 
+Last login: Sun Jul  9 19:46:40 2017 from 10.31.183.159
+
+### testing chill with no arguments
+[flume:~] 101) cd cs50/labs/lab2/chill
+
+[flume:chill] 102) ./chill
+ Temp      Wind      Chill
+ ____      ____      _____
+-10.0       5.0      -22.3
+-10.0      10.0      -28.3
+-10.0      15.0      -32.2
+
+ -5.0       5.0      -16.4
+ -5.0      10.0      -22.1
+ -5.0      15.0      -25.8
+
+  0.0       5.0      -10.5
+  0.0      10.0      -15.9
+  0.0      15.0      -19.4
+
+  5.0       5.0       -4.6
+  5.0      10.0       -9.7
+  5.0      15.0      -13.0
+
+ 10.0       5.0        1.2
+ 10.0      10.0       -3.5
+ 10.0      15.0       -6.6
+
+ 15.0       5.0        7.1
+ 15.0      10.0        2.7
+ 15.0      15.0       -0.2
+
+ 20.0       5.0       13.0
+ 20.0      10.0        8.9
+ 20.0      15.0        6.2
+
+ 25.0       5.0       18.9
+ 25.0      10.0       15.1
+ 25.0      15.0       12.6
+
+ 30.0       5.0       24.7
+ 30.0      10.0       21.2
+ 30.0      15.0       19.0
+
+ 35.0       5.0       30.6
+ 35.0      10.0       27.4
+ 35.0      15.0       25.4
+
+ 40.0       5.0       36.5
+ 40.0      10.0       33.6
+ 40.0      15.0       31.8
+
+###testing chill with a temperature argument
+
+[flume:chill] 103) ./chill 10
+ Temp      Wind      Chill
+ ____      ____      _____
+ 10.0       5.0        1.2
+ 10.0      10.0       -3.5
+ 10.0      15.0       -6.6
+
+###testing chill with both temperature and a windspeed
+[flume:chill] 104) ./chill 5 20
+ Temp      Wind      Chill
+ ____      ____      _____
+  5.0      20.0      -15.4
+
+###testing too many arguments
+[flume:chill] 105) ./chill 5 20 37
+Usage: chill.c <Temperature> <Velocity>
+Only zero, one, or two arguments are permitted!
+
+###testing illegal temperature
+[flume:chill] 106) ./chill 60 0.5
+ Temp      Wind      Chill
+ ____      ____      _____
+Temperature must be less than 50 degrees Fahrenheit
+
+###testing illegal windspeed
+[flume:chill] 107) ./chill 45 0.4
+ Temp      Wind      Chill
+ ____      ____      _____
+Wind speed must be greater than or equal to 0.5 MPH
+
+###testing non numerical argument
+[flume:chill] 108) ./chill x
+ Temp      Wind      Chill
+ ____      ____      _____
+Argument must be numerical!
+[flume:chill] 109) 

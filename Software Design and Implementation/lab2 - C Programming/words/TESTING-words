@@ -1,0 +1,55 @@
+Last login: Sun Jul  9 19:50:39 on ttys000
+aruns-mbp:~ arunharianand$ ssh arunhari@flume.cs.dartmouth.edu
+arunhari@flume.cs.dartmouth.edu's password: 
+Last login: Sun Jul  9 20:20:32 2017 from 10.31.183.159
+
+[flume:~] 101) cd cs50/labs/lab2/words
+
+[flume:words] 102) gcc -o words words.c
+
+###testing hyphen interspersed with filenames
+[flume:words] 103) ./words test0 - test1
+test
+abc
+def
+hij
+klm
+nop
+sq
+r
+s
+tuv
+wxyz
+
+this is input from stdin, because a hyphen is present
+this
+is
+input
+from
+stdin
+because
+a
+hyphen
+is
+present
+test
+abcdef
+ghi
+jkl
+mnop
+qrs
+tuv
+wxyz
+
+###testing with no command line arguments
+[flume:words] 104) ./words
+cs50.dartmouth.edu
+cs
+dartmouth
+edu
+ABC DEF9098-GHI
+ABC
+DEF
+GHI
+
+[flume:words] 105) 

@@ -1,0 +1,93 @@
+Last login: Sun Jul  9 19:00:25 on ttys000
+aruns-mbp:~ arunharianand$ ssh arunhari@flume.cs.dartmouth.edu
+arunhari@flume.cs.dartmouth.edu's password: 
+Last login: Sun Jul  9 19:00:35 2017 from 10.31.183.159
+
+[flume:~] 101) cd cs50/labs/lab2/regress
+
+###testing regress for a new run with 3 testfiles
+[flume:regress] 102) ./regress.sh base testfile?
+Saved test results in base
+
+###testing to see differences when only 2 test files are used
+[flume:regress] 103) ./regress.sh base testfile0 testfile1
+Saved test results in 20170709.190354
+Comparing 20170709.190354 with base
+Only in base: testfile2.status
+Only in base: testfile2.stderr
+Only in base: testfile2.stdout
+Only in base: testfile2.test
+
+###testing to see differences when one of the testfiles is modified
+[flume:regress] 104) echo ~/cs50/labs/lab1/shake.sh thy > testfile1
+
+[flume:regress] 105) ./regress.sh base testfile0 testfile1
+Saved test results in 20170709.190530
+Comparing 20170709.190530 with base
+Files base/testfile1.stdout and 20170709.190530/testfile1.stdout differ
+Files base/testfile1.test and 20170709.190530/testfile1.test differ
+Only in base: testfile2.status
+Only in base: testfile2.stderr
+Only in base: testfile2.stdout
+Only in base: testfile2.test
+
+###testing now to see differences with a modified testfile as well as only 2 testfiles
+[flume:regress] 106) ./regress.sh base testfile0 testfile1
+Saved test results in 20170709.190925
+Comparing 20170709.190925 with base
+Files base/testfile1.stdout and 20170709.190925/testfile1.stdout differ
+Files base/testfile1.test and 20170709.190925/testfile1.test differ
+Only in base: testfile2.status
+Only in base: testfile2.stderr
+Only in base: testfile2.stdout
+Only in base: testfile2.test
+
+###testing to see illegal usage
+[flume:regress] 106) ./regress.sh
+Usage: regress.sh dirname testfile0
+
+###testing a file instead of a directory for doorman
+[flume:regress] 107) ./regress.sh testfile0 testfile1
+testfile0 is a file, not a directory!
+
+###testing a file that does not exist
+[flume:regress] 108) ./regress.sh base does_not_exist
+One of the files does not exist!
+
+#testing a file that is not readable
+[flume:regress] 109) chmod u-r testfile0
+
+[flume:regress] 110) ./regress.sh base testfile0
+testfile0 is not readable!
+
+[flume:regress] 111) chmod u+r testfile0
+
+
+###testing an illegal foldername
+[flume:regress] 113) ./regress.sh /base  testfile0
+mv: cannot create directory '/base': Permission denied
+failed to save test results in /base
+results remain in 20170709.191531
+Saved test results in /base
+
+###testing running a testfile that is not inside of the current working directory
+[flume:regress] 114) cp testfile0 ~/cs50/labs/lab2
+
+[flume:regress] 115) cd ..
+
+[flume:lab2] 116) ls
+chill  histo  regress  testfile0  words
+
+[flume:lab2] 117) cd regress
+
+[flume:regress] 118) ./regress.sh base ../testfile0
+Saved test results in 20170709.193143
+Comparing 20170709.193143 with base
+Only in base: testfile1.status
+Only in base: testfile1.stderr
+Only in base: testfile1.stdout
+Only in base: testfile1.test
+Only in base: testfile2.status
+Only in base: testfile2.stderr
+Only in base: testfile2.stdout
+Only in base: testfile2.test

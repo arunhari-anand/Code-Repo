@@ -1,0 +1,20 @@
+
+testing hashtable_insert:
+Testing a valid key: 
+Found in hashtable: 1947949867
+Testing an invalid key: 
+Key not found!
+Printing the hashtable 
+
+[{Key: Key4, Int: 4798763;Key: Key3, Int: 34234;Key: Key2, Int: 234698087;Key: Key1, Int: 1947949867;}
+]
+Incrementing the hashtable  by 5
+
+[{Key: Key4, Int: 4798768;Key: Key3, Int: 34239;Key: Key2, Int: 234698092;Key: Key1, Int: 1947949872;}
+]
+Deleting the hashtable
+Testing the hashtable with structs as items 
+
+[{Key: Key3, Int: 3;}
+][{Key: Key2, Int: 2;Key: Key1, Int: 1;}
+]

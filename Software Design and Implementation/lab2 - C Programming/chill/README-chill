@@ -1,0 +1,65 @@
+README for chill.c
+Arun Anand, Summer 2017
+
+Compiling: mygcc -o chill chill.c
+
+Usage:
+/*
+ * chill.c - output wind_chill tables by temperature and wind velocity
+ *
+ *
+ * usage: three different ways to call:
+ * (i) chill (ii) chill temp (iii) chill temp wind
+ * where:
+ *   temp is the temperature and wind is the windspeed
+ *
+ * output: in case (i) prints out a table of temperatures from -10 to 40 by tens,
+ * windspeeds from 5 to 15 by fives and the corresponding windchill values
+ * in case (ii) it prints out a table of windchill from 5 to 15 by fives and
+ * the corresponding windchills for the given temperature
+ * in case (iii) prints out a single line table of temperature, wind velocity and
+ * the corresponding wind chill.
+ * Requirements: temp must be between -99 and 50 exclusive, and wind must be
+ * atleast 0.5 MPH
+ *
+ *
+ *
+ * stdin: none
+ * stdout: printout of the table
+ * stderr: error messages
+ *
+ * Arun Anand, July 2017
+ */
+
+Example command lines:
+  ./chill 10
+  ./chill 10 15
+  ./chill
+
+Exit status:
+  0 - success
+  1 - too many arguments
+  2 - argument(s) is/are non-numerical
+  3 - temp out of range
+  4 - wind is out of range
+
+Assumptions:
+
+-No assumptions are made on the input, so the program will not crash.
+-However, (i) if there are too many arguments, (ii) if there are non-numerical
+arguments or (iii) temp or wind (or both) is/are out of range then the program
+will terminate execution and print an error message.
+
+"Non"-Assumptions:
+
+- the number of arguments is flexible and can be 0, 1, or 2.
+
+
+Limitations:
+
+-Will not be able to handle inputs outside the legal temp and
+wind ranges.
+-Will not be able to handle inputs for temperature and wind_chill
+to calculate wind velocities
+- Will not be able to handle inputs of wind velocity and wind_chill
+to calculate temperature
